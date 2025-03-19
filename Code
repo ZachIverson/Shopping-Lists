@@ -1,0 +1,22 @@
+def display_menu():
+    # Choices for shopping lists options
+    print("\nShopping List Menu:")
+    print("1. Add item")
+    print("2. View list")
+    print("3. edit item price")
+    print("4. Delete item")
+    print("5. Calculate total cost")
+    print("6. Exit")
+
+def add_item(shopping_list):
+    # Add a new item to the shopping list
+    item = input("Enter item name: ")
+    if item in shopping_list:
+        print("Item already exists! Use edit option.")
+    else:
+        try:
+            cost = float(input("Enter item cost: "))
+            shopping_list[item] = cost
+            print(f"{item} added successfully!")
+        except ValueError:
+            print("Invalid cost. Please enter a number.")
