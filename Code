@@ -20,3 +20,63 @@ def add_item(shopping_list):
             print(f"{item} added successfully!")
         except ValueError:
             print("Invalid cost. Please enter a number.")
+def view_list(shopping_list):
+    # Display the itemsand cost
+    if not shopping_list:
+        print("Your shopping list is empty.")
+    else:
+        print("\nShopping List:")
+        for item, cost in shopping_list.items():
+            print(f"{item}: ${cost:.2f}")
+
+def edit_item(shopping_list):
+    # edit the price of an existing item
+    item = input("Enter item name to edit: ")
+    if item in shopping_list:
+        try:
+            new_cost = float(input("Enter new cost: "))
+            shopping_list[item] = new_cost
+            print(f"{item} price updated!")
+        except ValueError:
+            print("Invalid cost. Please enter a number.")
+    else:
+        print("Item not found.")
+
+def delete_item(shopping_list):
+    # Remove an item from the shopping list
+    item = input("Enter item name to delete: ")
+    if item in shopping_list:
+        del shopping_list[item]
+        print(f"{item} removed from the list!")
+    else:
+        print("Item not found.")
+
+def calculate_total(shopping_list):
+    # Calculate and display the total cost of all items in the shopping list
+    total = sum(shopping_list.values())
+    print(f"Total cost of shopping list: ${total:.2f}")
+
+def main():
+    # Main function to drive the program
+    shopping_list = {}  # Initialize an empty shopping list dictionary
+    while True:
+        display_menu()
+        choice = input("Choose an option (1-6): ")
+        if choice == "1":
+            add_item(shopping_list)
+        elif choice == "2":
+            view_list(shopping_list)
+        elif choice == "3":
+            edit_item(shopping_list)
+        elif choice == "4":
+            delete_item(shopping_list)
+        elif choice == "5":
+            calculate_total(shopping_list)
+        elif choice == "6":
+            print("Exiting program. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
